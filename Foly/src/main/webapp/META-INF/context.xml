@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--태그로 작성된 파일(정보를 저장)-->
+<!-- 디비연결에 필요한 정보를 저장 -->
+<!-- 주석을 최대한 안적을것이다 주석때문에 오류날수있음 -->
+
+<Context>
+	<Resource
+		name = "jdbc/foly" 
+		auth = "Container"
+		type = "javax.sql.DataSource"
+		driverClassName = "com.mysql.cj.jdbc.Driver"
+		username = "c6d2305t1"
+		password = "1234"
+		url = "jdbc:mysql://itwillbs.com:3306/c6d2305t1" 
+		maxWait = ""
+		 
+	/>
+
+
+</Context>

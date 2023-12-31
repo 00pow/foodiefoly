@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Kakao 지도 시작하기</title>
+	<!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+    
+    
+    <!-- Core Stylesheet -->
+    <link href="style.css" rel="stylesheet">
+    
+    <!-- Responsive CSS -->
+    <link href="css/responsive/responsive.css" rel="stylesheet">
+    
+    
+	<!-- kakao map -->
+<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> 
+
+	
+</head>
+<body>
+
+	<div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=773255b66befd38bb1ded22084a98c9f"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(35.157335, 129.063157),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(35.157335, 129.063157); 
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+	</script>
+</body>
+</html>

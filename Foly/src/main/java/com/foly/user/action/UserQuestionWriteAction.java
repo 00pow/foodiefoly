@@ -1,0 +1,71 @@
+package com.foly.user.action;
+
+
+import java.io.PrintWriter;
+import java.sql.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.foly.user.db.UserqDAO;
+import com.foly.user.db.UserqDTO;
+import com.foly.util.Action;
+import com.foly.util.ActionForward;
+
+public class UserQuestionWriteAction implements Action{
+	
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println(" M : UserQuestionAction_execute() 호출 ");
+		
+		HttpSession session = request.getSession();
+		String us_id = (String)session.getAttribute("us_id");
+		
+		
+		if (us_id == null) {
+			// 사용자가 보는 화면은 html 형식을 띄게 하면서
+			response.setContentType("text/html; charset=UTF-8");
+			// 글을 쓸 수 있게 해준다
+			PrintWriter out = response.getWriter();
+					
+			out.println("HTML 코드 사용 가능");
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.');");
+			out.println("location.href='./UserLogin.lo';");
+			out.println("</script>");
+					
+			out.close();
+					
+			// 컨트롤러의 페이지 이동 막음 
+			return null;
+		}	
+		
+		
+		
+		UserqDTO dto = new UserqDTO();
+		dto.setUs_id(us_id);
+		dto.setQna_sub(request.getParameter("qna_sub"));
+		dto.setQna_cont(request.getParameter("qna_cont"));
+		dto.setDate(new Date(System.currentTimeMillis()));
+		System.out.println(" M : " + dto);
+		
+		UserqDAO dao = new UserqDAO();
+		dao.insertQna1(dto);
+//		// UserDAO 객체 - getUserInfo(id);
+//		UserqDAO dao = new UserqDAO();
+//		UserqDTO dto = dao.getUserQna(us_id);
+//		// DB에서 가져온 정보를 view페이지로 전달
+//		//=> request 영역에 정보 저장
+//		request.setAttribute("dto1", dto);
+//		// 페이지 이동(forward)
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("./Question.us");
+		forward.setRedirect(true);
+		
+		return forward;
+	}
+
+
+}
